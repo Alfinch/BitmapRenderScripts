@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RenderScriptTests.iml" filepath="$PROJECT_DIR$/RenderScriptTests.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/imagerenderscripts/imagerenderscripts.iml" filepath="$PROJECT_DIR$/imagerenderscripts/imagerenderscripts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BitmapRenderScripts.iml" filepath="$PROJECT_DIR$/BitmapRenderScripts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitmapRenderScriptTests/bitmapRenderScriptTests.iml" filepath="$PROJECT_DIR$/bitmapRenderScriptTests/bitmapRenderScriptTests.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitmapRenderScripts/bitmapRenderScripts.iml" filepath="$PROJECT_DIR$/bitmapRenderScripts/bitmapRenderScripts.iml" />
     </modules>
   </component>
 </project>

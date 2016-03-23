@@ -1,1 +1,1 @@
-include ':app', ':imagerenderscripts'
+include ':bitmapRenderScriptTests', ':bitmapRenderScripts'

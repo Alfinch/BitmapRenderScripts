@@ -9,8 +9,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/imagerenderscripts" />
+            <option value="$PROJECT_DIR$/bitmapRenderScriptTests" />
+            <option value="$PROJECT_DIR$/bitmapRenderScripts" />
           </set>
         </option>
       </GradleProjectSettings>
