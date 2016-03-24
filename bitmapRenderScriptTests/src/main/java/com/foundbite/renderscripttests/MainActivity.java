@@ -129,7 +129,7 @@ public class MainActivity extends Activity {
 
         _bitmap = ImageProcessor
                 .with(this, _bitmap)
-                .blur(50, 2)
+                .blur(25, 2)
                 .get();
 
         long stopTime = System.nanoTime();

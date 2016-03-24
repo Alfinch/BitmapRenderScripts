@@ -144,6 +144,7 @@ public class ImageProcessor
         }
         else
         {
+            System.gc();
             Bitmap scaledBitmap = Bitmap.createScaledBitmap(_bitmap, newW, newH, true);
             _bitmap.recycle();
             _bitmap = scaledBitmap;
