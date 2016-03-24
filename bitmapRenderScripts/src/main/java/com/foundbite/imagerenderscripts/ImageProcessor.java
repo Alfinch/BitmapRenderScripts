@@ -10,6 +10,7 @@ import android.renderscript.Allocation;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicResize;
 import com.foundbite.rs.ScriptC_rotate;
+import com.foundbite.rs.ScriptC_crop;
 
 /**
  * Created by Alfie on 22/03/2016.
@@ -138,6 +139,9 @@ public class ImageProcessor
         }
         else
         {
+            Bitmap scaledBitmap = Bitmap.createScaledBitmap(_bitmap, newW, newH, true);
+            _bitmap.recycle();
+            _bitmap = scaledBitmap;
         }
 
         return this;
@@ -145,6 +149,28 @@ public class ImageProcessor
 
     public ImageProcessor crop(Rect bounds)
     {
+        int oldW = _bitmap.getWidth();
+        int oldH = _bitmap.getHeight();
+
+        if (bounds.left > oldW || bounds.top > oldH) return this;
+        if (bounds.right > oldW) bounds.right = oldW;
+        if (bounds.bottom > oldH) bounds.bottom = oldH;
+
+        final Allocation input = Allocation.createFromBitmap(_renderScript, _bitmap);
+
+        _bitmap.recycle();
+        _bitmap = Bitmap.createBitmap(bounds.width(), bounds.height(), Bitmap.Config.ARGB_8888);
+
+        final Allocation output = Allocation.createFromBitmap(_renderScript, _bitmap);
+
+        final ScriptC_crop script = new ScriptC_crop(_renderScript);
+        script.set_input(input);
+        script.set_left(bounds.left);
+        script.set_top(bounds.top);
+        script.forEach_crop(output, output);
+
+        output.copyTo(_bitmap);
+
         return this;
     }
 
