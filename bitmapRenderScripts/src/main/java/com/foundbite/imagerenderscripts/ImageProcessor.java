@@ -1,6 +1,5 @@
 package com.foundbite.imagerenderscripts;
 
-import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,8 +10,9 @@ import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.renderscript.ScriptIntrinsicResize;
-import com.foundbite.rs.ScriptC_rotate;
+
 import com.foundbite.rs.ScriptC_crop;
+import com.foundbite.rs.ScriptC_rotate;
 
 /**
  * Created by Alfie on 22/03/2016.
