@@ -2,6 +2,7 @@ package com.foundbite.renderscripttests;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,9 +15,7 @@ public class MainActivity extends Activity {
 
     private ImageView _image;
     private TextView _timeText;
-    private Button _rotate90cwButton;
-    private Button _rotate180cwButton;
-    private Button _rotate270cwButton;
+    private Bitmap _bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,14 +25,19 @@ public class MainActivity extends Activity {
 
         _image = (ImageView)findViewById(R.id.image);
         _timeText = (TextView)findViewById(R.id.timeText);
+
+        _bitmap = ImageProcessor
+                .with(this, R.drawable.plant)
+                .get();
+        _image.setImageBitmap(_bitmap);
     }
 
     public void onRotate90cwButtonClick(View v)
     {
         long startTime = System.nanoTime();
 
-        Bitmap rotatedBitmap = ImageProcessor
-                .with(this, R.drawable.plant)
+        _bitmap = ImageProcessor
+                .with(this, _bitmap)
                 .rotate90()
                 .get();
 
@@ -41,32 +45,15 @@ public class MainActivity extends Activity {
         long elapsedTime = (stopTime - startTime) / 1000000;
 
         _timeText.setText(Long.toString(elapsedTime) + "ms");
-        _image.setImageBitmap(rotatedBitmap);
-    }
-
-    public void onScaleRotate90cwButtonClick(View v)
-    {
-        long startTime = System.nanoTime();
-
-        Bitmap rotatedBitmap = ImageProcessor
-                .with(this, R.drawable.plant)
-                .scale(0.2f)
-                .rotate90()
-                .get();
-
-        long stopTime = System.nanoTime();
-        long elapsedTime = (stopTime - startTime) / 1000000;
-
-        _timeText.setText(Long.toString(elapsedTime) + "ms");
-        _image.setImageBitmap(rotatedBitmap);
+        _image.setImageBitmap(_bitmap);
     }
 
     public void onRotate180cwButtonClick(View v)
     {
         long startTime = System.nanoTime();
 
-        Bitmap rotatedBitmap = ImageProcessor
-                .with(this, R.drawable.plant)
+        _bitmap = ImageProcessor
+                .with(this, _bitmap)
                 .rotate180()
                 .get();
 
@@ -74,32 +61,15 @@ public class MainActivity extends Activity {
         long elapsedTime = (stopTime - startTime) / 1000000;
 
         _timeText.setText(Long.toString(elapsedTime) + "ms");
-        _image.setImageBitmap(rotatedBitmap);
-    }
-
-    public void onScaleRotate180cwButtonClick(View v)
-    {
-        long startTime = System.nanoTime();
-
-        Bitmap rotatedBitmap = ImageProcessor
-                .with(this, R.drawable.plant)
-                .scale(0.2f)
-                .rotate180()
-                .get();
-
-        long stopTime = System.nanoTime();
-        long elapsedTime = (stopTime - startTime) / 1000000;
-
-        _timeText.setText(Long.toString(elapsedTime) + "ms");
-        _image.setImageBitmap(rotatedBitmap);
+        _image.setImageBitmap(_bitmap);
     }
 
     public void onRotate270cwButtonClick(View v)
     {
         long startTime = System.nanoTime();
 
-        Bitmap rotatedBitmap = ImageProcessor
-                .with(this, R.drawable.plant)
+        _bitmap = ImageProcessor
+                .with(this, _bitmap)
                 .rotate270()
                 .get();
 
@@ -107,23 +77,43 @@ public class MainActivity extends Activity {
         long elapsedTime = (stopTime - startTime) / 1000000;
 
         _timeText.setText(Long.toString(elapsedTime) + "ms");
-        _image.setImageBitmap(rotatedBitmap);
+        _image.setImageBitmap(_bitmap);
     }
 
-    public void onScaleRotate270cwButtonClick(View v)
+    public void onScaleButtonClick(View v)
     {
         long startTime = System.nanoTime();
 
-        Bitmap rotatedBitmap = ImageProcessor
-                .with(this, R.drawable.plant)
-                .scale(0.2f)
-                .rotate270()
+        _bitmap = ImageProcessor
+                .with(this, _bitmap)
+                .scale(0.5f)
                 .get();
 
         long stopTime = System.nanoTime();
         long elapsedTime = (stopTime - startTime) / 1000000;
 
         _timeText.setText(Long.toString(elapsedTime) + "ms");
-        _image.setImageBitmap(rotatedBitmap);
+        _image.setImageBitmap(_bitmap);
+    }
+
+    public void onCropButtonClick(View v)
+    {
+        int w = _bitmap.getWidth();
+        int h = _bitmap.getHeight();
+
+        Rect bounds = new Rect(w / 4, h / 4, w * 3 / 4, h * 3 / 4);
+
+        long startTime = System.nanoTime();
+
+        _bitmap = ImageProcessor
+                .with(this, _bitmap)
+                .crop(bounds)
+                .get();
+
+        long stopTime = System.nanoTime();
+        long elapsedTime = (stopTime - startTime) / 1000000;
+
+        _timeText.setText(Long.toString(elapsedTime) + "ms");
+        _image.setImageBitmap(_bitmap);
     }
 }

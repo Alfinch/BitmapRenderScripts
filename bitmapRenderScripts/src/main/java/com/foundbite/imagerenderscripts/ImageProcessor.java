@@ -122,6 +122,8 @@ public class ImageProcessor
         int newW = (int)(_bitmap.getWidth() * multiplier);
         int newH = (int)(_bitmap.getHeight() * multiplier);
 
+        if (newW < 1 || newH < 1) return this;
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
         {
             final Allocation input = Allocation.createFromBitmap(_renderScript, _bitmap);
@@ -152,7 +154,7 @@ public class ImageProcessor
         int oldW = _bitmap.getWidth();
         int oldH = _bitmap.getHeight();
 
-        if (bounds.left > oldW || bounds.top > oldH) return this;
+        if (oldW < 4 || oldH < 4 || bounds.left > oldW || bounds.top > oldH) return this;
         if (bounds.right > oldW) bounds.right = oldW;
         if (bounds.bottom > oldH) bounds.bottom = oldH;
 

@@ -24,16 +24,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:id="@+id/rotate90cwButton"
             android:text="Rotate 90"
             android:onClick="onRotate90cwButtonClick"/>
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:id="@+id/scaleRotate90cwButton"
-            android:text="Scale Rotate 90"
-            android:onClick="onScaleRotate90cwButtonClick"/>
+            android:text="Scale 0.5"
+            android:onClick="onScaleButtonClick"/>
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -43,16 +41,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:id="@+id/rotate180cwButton"
             android:text="Rotate 180"
             android:onClick="onRotate180cwButtonClick"/>
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:id="@+id/scaleRotate180cwButton"
-            android:text="Scale Rotate 180"
-            android:onClick="onScaleRotate180cwButtonClick"/>
+            android:text="Crop"
+            android:onClick="onCropButtonClick"/>
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -62,15 +58,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:id="@+id/rotate270cwButton"
             android:text="Rotate 270"
             android:onClick="onRotate270cwButtonClick"/>
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/scaleRotate270cwButton"
-            android:text="Scale Rotate 270"
-            android:onClick="onScaleRotate270cwButtonClick"/>
+            android:layout_weight="1"/>
     </LinearLayout>
 </LinearLayout>
