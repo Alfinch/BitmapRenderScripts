@@ -7,7 +7,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.os.Build;
 import android.renderscript.Allocation;
+import android.renderscript.Element;
 import android.renderscript.RenderScript;
+import android.renderscript.ScriptIntrinsicBlur;
 import android.renderscript.ScriptIntrinsicResize;
 import com.foundbite.rs.ScriptC_rotate;
 import com.foundbite.rs.ScriptC_crop;
@@ -133,7 +135,8 @@ public class ImageProcessor
 
             final Allocation output = Allocation.createFromBitmap(_renderScript, _bitmap);
 
-            final ScriptIntrinsicResize script = ScriptIntrinsicResize.create(_renderScript);
+            final ScriptIntrinsicResize script = ScriptIntrinsicResize
+                    .create(_renderScript);
             script.setInput(input);
             script.forEach_bicubic(output);
 
@@ -172,6 +175,38 @@ public class ImageProcessor
         script.forEach_crop(output, output);
 
         output.copyTo(_bitmap);
+
+        return this;
+    }
+
+    public ImageProcessor blur(float radius, int subsample)
+    {
+        if (radius <= 0) return this;
+
+        if (subsample > 1)
+        {
+            radius /= subsample;
+            scale(1f / subsample);
+        }
+
+        if (radius > 25) radius = 25;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
+        {
+            final Allocation input = Allocation.createFromBitmap(_renderScript, _bitmap);
+            final Allocation output = Allocation.createFromBitmap(_renderScript, _bitmap);
+
+            final ScriptIntrinsicBlur script = ScriptIntrinsicBlur
+                    .create(_renderScript, Element.U8_4(_renderScript));
+            script.setInput(input);
+            script.setRadius(radius);
+            script.forEach(output);
+
+            output.copyTo(_bitmap);
+        }
+
+        if (subsample > 1)
+            scale(subsample);
 
         return this;
     }

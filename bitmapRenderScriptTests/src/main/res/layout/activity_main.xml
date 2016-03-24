@@ -29,54 +29,77 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginRight="8dp"
             android:text="Rotate 90"
+            android:background="@android:color/darker_gray"
+            android:textColor="@android:color/white"
             android:onClick="onRotate90cwButtonClick"/>
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Scale 0.5"
+            android:background="@android:color/darker_gray"
+            android:textColor="@android:color/white"
             android:onClick="onScaleButtonClick"/>
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginRight="8dp"
             android:text="Rotate 180"
+            android:background="@android:color/darker_gray"
+            android:textColor="@android:color/white"
             android:onClick="onRotate180cwButtonClick"/>
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Crop 0.5"
+            android:background="@android:color/darker_gray"
+            android:textColor="@android:color/white"
             android:onClick="onCropButtonClick"/>
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginRight="8dp"
             android:text="Rotate 270"
+            android:background="@android:color/darker_gray"
+            android:textColor="@android:color/white"
             android:onClick="onRotate270cwButtonClick"/>
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Reset"
-            android:background="@android:color/holo_red_dark"
+            android:text="Blur 50"
+            android:background="@android:color/darker_gray"
             android:textColor="@android:color/white"
-            android:onClick="onResetButtonClick"/>
+            android:onClick="onBlurButtonClick"/>
     </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reset"
+        android:background="@android:color/holo_red_dark"
+        android:textColor="@android:color/white"
+        android:onClick="onResetButtonClick"/>
 </LinearLayout>

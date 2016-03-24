@@ -123,6 +123,23 @@ public class MainActivity extends Activity {
         _image.setImageBitmap(_bitmap);
     }
 
+    public void onBlurButtonClick(View v)
+    {
+        long startTime = System.nanoTime();
+
+        _bitmap = ImageProcessor
+                .with(this, _bitmap)
+                .blur(50, 2)
+                .get();
+
+        long stopTime = System.nanoTime();
+        long elapsedTime = (stopTime - startTime) / 1000000;
+
+        _timeText.setText(Long.toString(elapsedTime) + "ms");
+        _resolutionText.setText(Integer.toString(_bitmap.getWidth()) + " x " + Integer.toString(_bitmap.getHeight()));
+        _image.setImageBitmap(_bitmap);
+    }
+
     public void onResetButtonClick(View v)
     {
         _bitmap.recycle();
