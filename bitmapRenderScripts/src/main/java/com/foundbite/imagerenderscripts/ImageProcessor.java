@@ -182,32 +182,31 @@ public class ImageProcessor
 
     public ImageProcessor blur(float radius, int subsample)
     {
-        if (radius <= 0) return this;
-
-        if (subsample > 1)
-        {
-            radius /= subsample;
-            scale(1f / subsample);
-        }
-
-        if (radius > 25) radius = 25;
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
         {
-            final Allocation input = Allocation.createFromBitmap(_renderScript, _bitmap);
-            final Allocation output = Allocation.createFromBitmap(_renderScript, _bitmap);
+            if (radius <= 0) return this;
 
-            final ScriptIntrinsicBlur script = ScriptIntrinsicBlur
-                    .create(_renderScript, Element.U8_4(_renderScript));
-            script.setInput(input);
-            script.setRadius(radius);
-            script.forEach(output);
+            if (subsample > 1)
+            {
+                radius /= subsample;
+                scale(1f / subsample);
+            }
 
-            output.copyTo(_bitmap);
+            if (radius > 25) radius = 25;
+                final Allocation input = Allocation.createFromBitmap(_renderScript, _bitmap);
+                final Allocation output = Allocation.createFromBitmap(_renderScript, _bitmap);
+
+                final ScriptIntrinsicBlur script = ScriptIntrinsicBlur
+                        .create(_renderScript, Element.U8_4(_renderScript));
+                script.setInput(input);
+                script.setRadius(radius);
+                script.forEach(output);
+
+                output.copyTo(_bitmap);
+
+            if (subsample > 1)
+                scale(subsample);
         }
-
-        if (subsample > 1)
-            scale(subsample);
 
         return this;
     }
