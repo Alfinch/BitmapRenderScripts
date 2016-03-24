@@ -5,11 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="8dp">
-    <TextView
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:id="@+id/timeText"/>
+        android:layout_marginBottom="8dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:id="@+id/resolutionText"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/timeText"/>
+    </LinearLayout>
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -47,7 +57,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Crop"
+            android:text="Crop 0.5"
             android:onClick="onCropButtonClick"/>
     </LinearLayout>
     <LinearLayout
@@ -63,6 +73,10 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:text="Reset"
+            android:background="@android:color/holo_red_dark"
+            android:textColor="@android:color/white"
+            android:onClick="onResetButtonClick"/>
     </LinearLayout>
 </LinearLayout>

@@ -14,8 +14,9 @@ import com.foundbite.imagerenderscripts.ImageProcessor;
 public class MainActivity extends Activity {
 
     private ImageView _image;
-    private TextView _timeText;
     private Bitmap _bitmap;
+    private TextView _timeText;
+    private TextView _resolutionText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class MainActivity extends Activity {
 
         _image = (ImageView)findViewById(R.id.image);
         _timeText = (TextView)findViewById(R.id.timeText);
+        _resolutionText = (TextView)findViewById(R.id.resolutionText);
 
         _bitmap = ImageProcessor
                 .with(this, R.drawable.plant)
@@ -45,6 +47,7 @@ public class MainActivity extends Activity {
         long elapsedTime = (stopTime - startTime) / 1000000;
 
         _timeText.setText(Long.toString(elapsedTime) + "ms");
+        _resolutionText.setText(Integer.toString(_bitmap.getWidth()) + " x " + Integer.toString(_bitmap.getHeight()));
         _image.setImageBitmap(_bitmap);
     }
 
@@ -77,6 +80,7 @@ public class MainActivity extends Activity {
         long elapsedTime = (stopTime - startTime) / 1000000;
 
         _timeText.setText(Long.toString(elapsedTime) + "ms");
+        _resolutionText.setText(Integer.toString(_bitmap.getWidth()) + " x " + Integer.toString(_bitmap.getHeight()));
         _image.setImageBitmap(_bitmap);
     }
 
@@ -93,6 +97,7 @@ public class MainActivity extends Activity {
         long elapsedTime = (stopTime - startTime) / 1000000;
 
         _timeText.setText(Long.toString(elapsedTime) + "ms");
+        _resolutionText.setText(Integer.toString(_bitmap.getWidth()) + " x " + Integer.toString(_bitmap.getHeight()));
         _image.setImageBitmap(_bitmap);
     }
 
@@ -114,6 +119,19 @@ public class MainActivity extends Activity {
         long elapsedTime = (stopTime - startTime) / 1000000;
 
         _timeText.setText(Long.toString(elapsedTime) + "ms");
+        _resolutionText.setText(Integer.toString(_bitmap.getWidth()) + " x " + Integer.toString(_bitmap.getHeight()));
+        _image.setImageBitmap(_bitmap);
+    }
+
+    public void onResetButtonClick(View v)
+    {
+        _bitmap.recycle();
+        _bitmap = ImageProcessor
+                .with(this, R.drawable.plant)
+                .get();
+
+        _timeText.setText(null);
+        _resolutionText.setText(Integer.toString(_bitmap.getWidth()) + " x " + Integer.toString(_bitmap.getHeight()));
         _image.setImageBitmap(_bitmap);
     }
 }
